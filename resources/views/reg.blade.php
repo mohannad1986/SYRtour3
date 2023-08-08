@@ -134,63 +134,77 @@
 
 {{-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ --}}
 
-            <div class="tab__content">
-                <h3 class="text-center">انشاء ادمن </h3>
-                {{-- <p>Praesent nonummy mi in odio. Nullam accumsan lorem in dui. Vestibulum turpis sem, aliquet eget, lobortis pellentesque, rutrum eu, nisl. Nullam accumsan lorem in dui. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.</p> --}}
-                <form method="post" action="" autocomplete="off">
-                    @csrf
-                    <div class="row">
+
+<div class="tab__content">
+    <h3 class="text-center">انشاء ادمن </h3>
+    {{-- <p>Praesent nonummy mi in odio. Nullam accumsan lorem in dui. Vestibulum turpis sem, aliquet eget, lobortis pellentesque, rutrum eu, nisl. Nullam accumsan lorem in dui. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.</p> --}}
+    <form method="POST" action="{{ route('register') }}" autocomplete="off">
+        @csrf
+        <div class="row">
 
 
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label> اسم الادمن  </label>
-                                <input  class="form-control" class="form-control" id="name" type="text"class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus >
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label> اسم الادمن  </label>
+                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
-                                @error('name')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label > الايميل</label>
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" >
-
-                                @error('email')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label> كلمة السر</label>
-                                <input  class="form-control"id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" >
-
-                                @error('password')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                            </div>
-                        </div>
-                    </div>
-
-                    <button class="btn btn-success btn-sm nextBtn btn-lg pull-right" type="submit">{{trans('register Admin acount')}}</button>
-                </form>
-
-
+                    @error('name')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
             </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label > الايميل</label>
+                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+
+                    @error('email')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label> كلمة السر</label>
+                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+
+                    @error('password')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+            </div>
+        </div>
+      {{-- ++++++++++++++++++++++++++++++ --}}
+      <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+            <label for="password-confirm" class="col-md-4 col-form-label text-md-end">تاكيد كلمة السر</label>
+
+
+                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+            </div>
+
+        </div>
+      </div>
+        {{-- +++++++++++++++++++++++++++++++ --}}
+
+        <button class="btn btn-success btn-sm nextBtn btn-lg pull-right" type="submit">{{trans('register Admin acount')}}</button>
+    </form>
+
+
+</div>
 
         </div>
 

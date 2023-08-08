@@ -156,18 +156,20 @@
                         {{-- ++++++ بداية فورم تسجسل الخروج +++ --}}
 
                         @if(auth('tourist')->check())
-                        <form method="GET" action="{{ route('logout','tourist') }}">
+                        <form method="GET" action="{{ route('logoutguard','tourist') }}">
                             @elseif(auth('owner')->check())
-                                <form method="GET" action="{{ route('logout','owner') }}">
+                                <form method="GET" action="{{ route('logoutguard','owner') }}">
 
                                             @else
-                                                <form method="GET" action="{{ route('logout','web') }}">
+
+                                                <form method="GET" action="{{ route('logoutguard','web') }}">
                                                     @endif
 
                                                     @csrf
                                                     <a class="dropdown-item" href="#" onclick="event.preventDefault();this.closest('form').submit();"><i class="bx bx-log-out"></i>تسجيل الخروج</a>
                                                 </form>
-                         {{-- +++++++++++نهتية فورو نسجيل الخروج ++++++++++ --}}
+                        {{-- +++++++++++نهتية فورو نسجيل الخروج ++++++++++ --}}
+
 
                     </div>
                 </li>

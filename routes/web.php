@@ -14,7 +14,7 @@ use  Illuminate\Support\Facades\Auth;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-// Auth::routes();
+Auth::routes();
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -36,7 +36,7 @@ Route::get('loginshow', function () {
 
 
 Route::post('/login',[App\Http\Controllers\Auth\LoginController::class,'login'])->name('login')->middleware('guest');
-Route::get('/logout/{type}',[App\Http\Controllers\Auth\LoginController::class,'logout'])->name('logout');
+Route::get('/logoutguard/{type}',[App\Http\Controllers\Auth\LoginController::class,'logout'])->name('logoutguard');
 
 
 
