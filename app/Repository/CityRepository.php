@@ -3,17 +3,12 @@
 namespace App\Repository;
 use App\Models\City;
 use Illuminate\Support\Facades\Storage;
-
 use Illuminate\Http\Request;
-
 use App\Http\Requests\StoreCity;
-
 use Illuminate\Http\UploadedFile;
 use App\Document;
 
 // use Illuminate\Support\Facades\Storage;
-
-
 
 
 use App\Models\Image;
@@ -112,16 +107,20 @@ class cityRepository implements CityRepositoryInterface
 
 
         try {
-            $city=  City::findOrFail($request->id);
+            $city= City::findOrFail($request->id);
 
-        //    if($city){
+           if($city){
 
-        //    Storage::disk('city_photos')->delete('city/'.$city->images->filename);
+           $cityimage= $city->images;
 
+            if($cityimage) {
 
-        //    $city->images->delete();
+           Storage::disk('city_photos')->delete('city/'.$city->images->filename);
 
-            City::destroy($request->id);
+            $city->images->delete();
+           }
+
+           City::destroy($request->id);
 
             return response()->json([
                 'status' => true,
@@ -129,7 +128,7 @@ class cityRepository implements CityRepositoryInterface
 
             ]);
 
-        //   }
+          }
 
         }
         catch (\Exception $e) {

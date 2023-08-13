@@ -331,15 +331,30 @@ class AddFacility extends Component
 
         $targetfac= Facility::findOrFail($id);
 
-        Storage::disk('facility_photos')->deleteDirectory($targetfac->id);
-        // storage::delet
+        if($targetfac){
 
 
+        Storage::disk('facility_photos')->deleteDirectory('facility_pho/'.$targetfac->id);
+
+
+        $facilityimages= $targetfac->images;
+
+        if($facilityimages) {
+
+        foreach( $facilityimages as  $facilityimage ) {
+
+            $facilityimage->delete();
+        }
+
+       }
 
 
         Facility::findOrFail($id)->delete();
 
-        return redirect()->to('/livewire');
+
+        $this->successMessage = trans('messages.success');
+
+       }
     }
 
 
